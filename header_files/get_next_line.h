@@ -6,7 +6,7 @@
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:25:44 by rmount            #+#    #+#             */
-/*   Updated: 2023/03/12 10:27:30 by rmount           ###   ########.fr       */
+/*   Updated: 2023/04/25 15:19:03 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft.h"
 
 char	*get_next_line(int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *src);
-int		ft_strlen(const char *str);
+//int		ft_strlen(const char *str);
 
 #endif

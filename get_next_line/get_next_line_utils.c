@@ -6,7 +6,7 @@
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:22:11 by rmount            #+#    #+#             */
-/*   Updated: 2023/03/12 10:27:30 by rmount           ###   ########.fr       */
+/*   Updated: 2023/04/25 15:19:40 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 /* This function takes a char pointer and counts the length of a string.
 */
-int	ft_strlen(const char *str)
-{
-	int	i;
+// int	ft_strlen(const char *str)
+// {
+// 	int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
-}
+// 	i = 0;
+// 	while (str[i])
+// 	{
+// 		i++;
+// 	}
+// 	return (i);
+// }
 
 /* This function takes a char pointer and creates a null-terminating 
 	copy which is returned. If the malloc fails, the function will return 
