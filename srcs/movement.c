@@ -6,7 +6,7 @@
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:23:38 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/27 12:03:51 by rmount           ###   ########.fr       */
+/*   Updated: 2023/04/27 16:53:48 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ static int	valid_move(t_game *hhs, int y, int x, int keycode)
 		return (-1);
 	if (hhs->map[y][x] == 'C')
 	{
-		ft_printf("Yummy, snails!\n");
+		ft_printf("NOM!\n");
 		hhs->c_count--;
+		if (hhs->c_count == 0)
+			ft_printf("That was the last one.\nTime to head home for a nap.\n");
 	}
 	if (hhs->map[y][x] == 'E' && hhs->c_count == 0)
 	{
 		hhs->end = 1;
-		ft_printf("Congratulations, you have absorbed all of");
+		ft_printf("Congratulations, you got all of");
 		ft_printf(" the snails and sated the slime!\n");
 		exit_program();
 	}
@@ -79,6 +81,6 @@ int	keypress_hook(int keycode, t_game *hhs)
 	}
 	if (hhs->end != 1)
 		take_step(hhs, y, x, keycode);
-	parse_map(hhs);
+	draw_map(hhs);
 	return (0);
 }

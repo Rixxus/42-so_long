@@ -6,7 +6,7 @@
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:23:58 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/27 14:37:07 by rmount           ###   ########.fr       */
+/*   Updated: 2023/04/27 16:27:49 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	it's called), we change the image of the slime depending on what the
 	value of the counter is.
 	Once the counter exceeds the value of the last image, we reset it to 1.
-	After (potentially) changing the image for the slime, we call parse_map
+	After (potentially) changing the image for the slime, we call draw_map
 	to refresh the map image.
 */
 
@@ -47,17 +47,17 @@ void	animate(t_game *hhs)
 	if (counter > 20)
 		counter = 1;
 	counter++;
-	parse_map(hhs);
+	draw_map(hhs);
 }
 
 /*
 	Just a handy little function to print a custom error message
-	when exiting.
+	when exiting, passed in as a string.
 */
 
 int	close_program(char *str)
 {
-	ft_printf("Error!\n%s\n", str);
+	ft_printf("Error!\n%s", str);
 	exit (1);
 }
 

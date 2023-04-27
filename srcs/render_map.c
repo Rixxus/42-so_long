@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_map.c                                       :+:      :+:    :+:   */
+/*   assign_images.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -40,7 +40,7 @@ void	place_snail(t_game *hhs)
 	}
 }
 
-void	render_map(t_game *hhs)
+void	assign_images(t_game *hhs)
 {
 	int	x;
 	int	y;
@@ -57,7 +57,7 @@ void	render_map(t_game *hhs)
 			"images/burrow50.xpm", &x, &y);
 }
 
-void	parse_map(t_game *hhs)
+void	draw_map(t_game *hhs)
 {
 	int		height;
 	int		width;

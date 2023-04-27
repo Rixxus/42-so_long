@@ -6,29 +6,35 @@
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:22:13 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/27 14:26:29 by rmount           ###   ########.fr       */
+/*   Updated: 2023/04/27 16:43:14 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*
+	This function checks that the supplied map is a rectangle.
+*/
 static void	valid_shape(t_game *hhs)
 {
-	int	y;
-	int	x;
-	int	line;
+	int	row_num;
+	int	first_row_length;
+	int	current_row_length;
 
-	y = 0;
-	x = 0;
-	line = ft_strlen(hhs->map[0]);
-	while (hhs->map[x] != 0)
+	row_num = 0;
+	first_row_length = ft_strlen(hhs->map[0]);
+	while (hhs->map[row_num] != 0)
 	{
-		y = ft_strlen(hhs->map[x]);
-		if (y != line)
+		current_row_length = ft_strlen(hhs->map[row_num]);
+		if (current_row_length != first_row_length)
 		{
-			close_program("The map is not a rectangle\n");
+			close_program("The rows are not all the same length. Not a rectangle.\n");
 		}
-		x++;
+		row_num++;
+	}
+	if (row_num == first_row_length - 1)
+	{
+		close_program("This is a square, not a rectangle.\n");
 	}
 }
 
@@ -39,6 +45,8 @@ void	check_walls(t_game *hhs)
 
 	y = 0;
 	x = 0;
+
+	valid_shape(hhs);
 	while (hhs->map[y][x + 1])
 	{
 		if (hhs->map[y][x] != '1' || hhs->map[hhs->h - 1][x] != '1')
@@ -55,11 +63,12 @@ void	check_walls(t_game *hhs)
 		}
 		y++;
 	}
-	valid_shape(hhs);
 }
 
+ 
 /*
-	Scans the map file and counts the number of each tile type.
+	Looks at the map tile at coordinates x and y and increments the total number 
+	of each tile type.
 	If a tile is found that doesn't match the accepted 
 	characters (E, C, P, 1 & 0), the program closes with
 	the error message.
@@ -78,9 +87,15 @@ static void	item_count(t_game *hhs, int y, int x)
 			hhs->map[y][x] != 'E' &&
 			hhs->map[y][x] != 'C')
 	{
-		close_program("Invalid character in map file\n");
+		close_program("There seems to be an invalid character in map file.\n");
 	}
 }
+
+/*
+	This function serves two purposes - it iterates through the 
+	map, each time calling item_count, and tests the number of 
+	collectables, player and exit is correct.
+*/
 
 void	valid_count(t_game *hhs)
 {
@@ -99,13 +114,13 @@ void	valid_count(t_game *hhs)
 		y++;
 	}
 	if (hhs->c_count == 0)
-		close_program("There are no snails\n");
+		close_program("This map is snailless :'(\n");
 	if (hhs->p_count < 1)
-		close_program("There must be a slime in the game\n");
+		close_program("This map has no slime! You need a slime!\n");
 	if (hhs->p_count > 1)
-		close_program("There can only be one slime in the game\n");
+		close_program("This map has too many slimes. Only one allowed per map. :'(\n");
 	if (hhs->e_count < 1)
-		close_program("There must be a burrow in the game\n");
+		close_program("This map has no burrow. No bueno. A slime's burrow is his castle.\n");
 	if (hhs->e_count > 1)
-		close_program("There can only be one burrow in the game\n");
+		close_program("This map has too many burrows. That'll confuse the poor slime.\n");
 }

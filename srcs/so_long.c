@@ -6,7 +6,7 @@
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:23:07 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/27 14:29:14 by rmount           ###   ########.fr       */
+/*   Updated: 2023/04/27 15:42:43 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int	main(int argc, char **argv)
 	hhs->mlx = mlx_init();
 	hhs->win = mlx_new_window(hhs->mlx, hhs->w * 50, hhs->h * 50,
 			"Hungry, hungry slime");
-	render_map(hhs);
-	parse_map(hhs);
+	assign_images(hhs);
+	draw_map(hhs);
 	mlx_hook(hhs->win, 17, 0, exit_program, NULL);
 	mlx_hook(hhs->win, 2, 1L << 0, keypress_hook, hhs);
 	mlx_loop_hook(hhs->mlx, (void *)animate, hhs);

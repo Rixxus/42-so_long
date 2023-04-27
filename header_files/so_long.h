@@ -6,7 +6,7 @@
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 19:07:12 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/27 11:42:43 by rmount           ###   ########.fr       */
+/*   Updated: 2023/04/27 15:42:43 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	check_walls(t_game *map);
 void	valid_count(t_game *map);
 int		valid_map(t_game *map);
 int		keypress_hook(int keycode, t_game *map);
-void	render_map(t_game *map);
-void	parse_map(t_game *map);
+void	assign_images(t_game *map);
+void	draw_map(t_game *map);
 void	copy_map(char **origin_map, char **copy_map);
 #endif
