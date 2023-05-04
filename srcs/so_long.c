@@ -6,7 +6,7 @@
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:23:07 by rmount            #+#    #+#             */
-/*   Updated: 2023/05/04 19:03:28 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/04 21:14:27 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,10 @@ t_game	*read_map(char *argv)
 	- creates a new mlx window instance and assigns it to the 
 	win variable, passing it the mlx library, the width and 
 	height * 50 for the screen size, and the window name
-	- calls assign images
+	- calls assign images which converts the xpm files into 
+	usable images
+	- calls draw map which puts the appropriate images to the window
+	- 
 */
 
 int	main(int argc, char **argv)

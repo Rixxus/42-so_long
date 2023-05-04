@@ -6,7 +6,7 @@
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:13:38 by rmount            #+#    #+#             */
-/*   Updated: 2022/02/08 11:54:42 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/04 21:26:48 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
-	int		i;
 	int		length;
 
 	length = size * count;
 	ptr = malloc(length);
-	i = 0;
 	if (!ptr)
 	{
 		return (NULL);
