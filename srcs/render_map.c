@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assign_images.c                                       :+:      :+:    :+:   */
+/*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 08:23:22 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/27 14:27:24 by rmount           ###   ########.fr       */
+/*   Created: 2023/05/04 20:46:19 by rmount            #+#    #+#             */
+/*   Updated: 2023/05/04 20:57:43 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*
+	This function is called by draw_map. It calls the
+	mlx_put_image_to_window function to put the slime (the player) at the 
+	supplied coordinates.
+*/
+
 void	place_slime(t_game *hhs, int height, int width)
 {
 	mlx_put_image_to_window(hhs->mlx, hhs->win, hhs->slime,
 		width * 50, height * 50);
-	hhs->playery = height;
-	hhs->playerx = width;
 }
+
+/*
+	This function iterates through the map, calling the 
+	mlx_put_image_to_window function where a collectable
+	(snail) is found on the map.
+*/
 
 void	place_snail(t_game *hhs)
 {
@@ -40,6 +50,16 @@ void	place_snail(t_game *hhs)
 	}
 }
 
+/*
+	This function calls the mlx_xpm_file_to_image function, 
+	which converts the xpm files (the tile artwork) to new image 
+	instances which are assigned to the variables tree, ground, slime, 
+	snail and burrow for later use.
+	The x and y we are passing here are unassigned as we are
+	going to tell the images what width and height to be later,
+	but the function requires an input to not be sad.
+*/
+
 void	assign_images(t_game *hhs)
 {
 	int	x;
@@ -56,6 +76,19 @@ void	assign_images(t_game *hhs)
 	hhs->burrow = mlx_xpm_file_to_image(hhs->mlx,
 			"images/burrow50.xpm", &x, &y);
 }
+
+/*
+	This function iterates through the map calling the 
+	mlx_put_image_to_window function to put a particular image to the 
+	window at the current location depending on the corresponding symbol 
+	on the map file. 
+	The first call places the ground image on every space (so that we 
+	see ground tiles behind snails, the exit and player), and then puts
+	another image on top if it is a wall, slime or exit.
+	Finally we call the place_snail function for the collectables. 
+	place_slime and place_snail have been done as separate functions to
+	meet the norminette's max 25 line function rule.
+*/
 
 void	draw_map(t_game *hhs)
 {

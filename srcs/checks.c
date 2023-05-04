@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:22:13 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/28 09:39:12 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/04 20:48:17 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	valid_shape(t_game *hhs)
 		current_row_length = ft_strlen(hhs->map[row_num]);
 		if (current_row_length != first_row_length)
 		{
-			close_program("The rows are not all the same length. Not a rectangle.\n");
+			close_program("Rows aren't all the same length. Not a rectangle.\n");
 		}
 		row_num++;
 	}
@@ -59,7 +59,6 @@ void	check_walls(t_game *hhs)
 
 	y = 0;
 	x = 0;
-
 	valid_shape(hhs);
 	while (hhs->map[y][x + 1])
 	{
@@ -78,7 +77,7 @@ void	check_walls(t_game *hhs)
 		y++;
 	}
 }
- 
+
 /*
 	Looks at the map tile at coordinates x and y and increments the total number 
 	of each tile type.
@@ -131,9 +130,9 @@ void	valid_count(t_game *hhs)
 	if (hhs->p_count < 1)
 		close_program("This map has no slime! You need a slime!\n");
 	if (hhs->p_count > 1)
-		close_program("This map has too many slimes. Only one allowed per map. :'(\n");
+		close_program("Too many slimes. Only one allowed per map. :'(\n");
 	if (hhs->e_count < 1)
-		close_program("This map has no burrow. No bueno. A slime's burrow is his castle.\n");
+		close_program("No burrow. No bueno. A slime's burrow is his castle.\n");
 	if (hhs->e_count > 1)
-		close_program("This map has too many burrows. That'll confuse the poor slime.\n");
+		close_program("This map has too many burrows.\n");
 }

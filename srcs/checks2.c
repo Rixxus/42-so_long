@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:21:53 by rmount            #+#    #+#             */
-/*   Updated: 2023/05/04 15:19:10 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/04 20:45:28 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_map_file(char *str)
 	i = 0;
 	while (str[i] != '\0')
 		i++;
-	if (str[i-1] != 'r' || str[i - 2] != 'e'
+	if (str[i - 1] != 'r' || str[i - 2] != 'e'
 		|| str[i - 3] != 'b' || str[i - 4] != '.')
 	{
 		close_program("Map must be a .ber file\n");

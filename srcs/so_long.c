@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:23:07 by rmount            #+#    #+#             */
-/*   Updated: 2023/05/04 15:33:47 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/04 19:03:28 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,24 @@ t_game	*read_map(char *argv)
 	new->w = get_width(new->map[0]);
 	return (new);
 }
+
+/*
+	This is the main function of the program.
+	It goes through a number of steps:
+	- tests if the correct number of arguments has been passed in
+	to the program.
+	- calls check_map_file() which tests the format of the map
+	file being passed in
+	- calls read_map() which creates the instance of the struct
+	- calls init_components() which sets the initial values
+	of the struct's counters
+	- calls valid_map to test the map is correct
+	- initialises the mlx library 
+	- creates a new mlx window instance and assigns it to the 
+	win variable, passing it the mlx library, the width and 
+	height * 50 for the screen size, and the window name
+	- calls assign images
+*/
 
 int	main(int argc, char **argv)
 {
