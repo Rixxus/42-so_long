@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:22:13 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/27 16:43:14 by rmount           ###   ########.fr       */
+/*   Updated: 2023/04/28 09:39:12 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /*
-	This function checks that the supplied map is a rectangle.
+	This function checks that the supplied map is a rectangle by measuring the
+	length of the first row and checking that all other rows are the same size.
+	It also then checks if the height is the same as the width. If either of 
+	these conditions fail the program closes with an error message.
 */
 static void	valid_shape(t_game *hhs)
 {
@@ -38,6 +41,17 @@ static void	valid_shape(t_game *hhs)
 	}
 }
 
+/*
+	This function iterates through each row in two different
+	while loop. 
+	The first checks if any map piece on the top
+	or bottom row isn't a 1, and closes with the error 
+	message if this is true.
+	The second checks if any map piece on the left or the
+	right columns isn't 1, and closes with the error message
+	if this is true.
+*/
+
 void	check_walls(t_game *hhs)
 {
 	int	y;
@@ -51,7 +65,7 @@ void	check_walls(t_game *hhs)
 	{
 		if (hhs->map[y][x] != '1' || hhs->map[hhs->h - 1][x] != '1')
 		{
-			close_program("Map is not surrounded by walls\n");
+			close_program("Missing wall/s on the top or bottom.\n");
 		}
 		x++;
 	}
@@ -59,12 +73,11 @@ void	check_walls(t_game *hhs)
 	{
 		if (hhs->map[y][0] != '1' || hhs->map[y][hhs->w - 1] != '1')
 		{
-			close_program("Map is not surrounded by walls\n");
+			close_program("Missing wall/s on the left or right.\n");
 		}
 		y++;
 	}
 }
-
  
 /*
 	Looks at the map tile at coordinates x and y and increments the total number 

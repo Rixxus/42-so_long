@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 19:07:12 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/27 15:42:43 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/04 15:14:00 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	place_snail(t_game *map);
 int		check_map_file(char *str);
 void	check_walls(t_game *map);
 void	valid_count(t_game *map);
-int		valid_map(t_game *map);
+void	valid_map(t_game *map);
 int		keypress_hook(int keycode, t_game *map);
 void	assign_images(t_game *map);
 void	draw_map(t_game *map);

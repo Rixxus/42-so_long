@@ -85,6 +85,12 @@ void	draw_map(t_game *hhs)
 	}
 }
 
+/*
+	This function takes the pointer to the game map,
+	and a pointer to the copy map, and copies the 
+	characters from the game map to the copy.
+	It is called by valid_path().
+*/
 void	copy_map(char **origin_map, char **copy_map)
 {
 	int	i;

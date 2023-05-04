@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:23:07 by rmount            #+#    #+#             */
-/*   Updated: 2023/04/27 15:42:43 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/04 15:33:47 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*
+	This function simply initialises all of the counter components of the 
+	structure to the required values at start of game.
+*/
 
 static void	init_components(t_game *hhs)
 {
@@ -24,6 +29,11 @@ static void	init_components(t_game *hhs)
 	hhs->moves = 1;
 }
 
+/*
+	This function is called by read_map and counts then returns the
+	length of str (the first row of the map).
+*/
+
 static int	get_width(char *str)
 {
 	int	i;
@@ -35,6 +45,25 @@ static int	get_width(char *str)
 		i--;
 	return (i);
 }
+
+/*
+	This function builds the game instance using the t_game struct (new). 
+	It goes through a number of	steps:
+	- callocs the variable (new) to be the corrrect size of the struct
+	- opens the map file
+	- assigns an fd to new which is returned by the open function
+	- initialises the height(h) of new to 0
+	- checks that the file descriptor is valid (greater than 0)
+	- uses get_next_line to read the height of the map(h)
+	- closes the map file
+	- callocs new's map to be the correct size for the height (rows)
+	- reopens the map file
+	- uses get next line to copy each line into the map
+	- closes the map file
+	- gets the width of the map with get_width and assigns it to 
+	new's width(w)
+	- returns new to main()
+*/
 
 t_game	*read_map(char *argv)
 {
@@ -71,10 +100,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		close_program("Invalid number of arguments, there must be 2.\n");
-		return (1);
 	}
 	if (check_map_file(argv[1]))
-		return (1);
+	{
+		close_program("Map must be a .ber file\n");
+	}
 	hhs = read_map(argv[1]);
 	init_components(hhs);
 	valid_map(hhs);
@@ -87,5 +117,4 @@ int	main(int argc, char **argv)
 	mlx_hook(hhs->win, 2, 1L << 0, keypress_hook, hhs);
 	mlx_loop_hook(hhs->mlx, (void *)animate, hhs);
 	mlx_loop(hhs->mlx);
-	return (0);
 }
