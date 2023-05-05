@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:23:07 by rmount            #+#    #+#             */
-/*   Updated: 2023/05/04 21:14:27 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/05 13:07:24 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,14 @@ t_game	*read_map(char *argv)
 	- calls assign images which converts the xpm files into 
 	usable images
 	- calls draw map which puts the appropriate images to the window
-	- 
+	- sets up an mlx_hook for the ondestroy event (code 17) which calls
+	the exit_program function when triggered
+	- sets up an mlx_hook for the keypress event (code 2) whick calls the
+	keypress_hook function when triggered
+	- sets up an mlx_loop_hook that is triggered every time the mlx 
+	loops and calls the animate function
+	- sets up an mlx_loop which causes the mlx to continue looping
+	through until the program is killed
 */
 
 int	main(int argc, char **argv)
@@ -135,7 +142,7 @@ int	main(int argc, char **argv)
 	assign_images(hhs);
 	draw_map(hhs);
 	mlx_hook(hhs->win, 17, 0, exit_program, NULL);
-	mlx_hook(hhs->win, 2, 1L << 0, keypress_hook, hhs);
+	mlx_hook(hhs->win, 2, 0, keypress_hook, hhs);
 	mlx_loop_hook(hhs->mlx, (void *)animate, hhs);
 	mlx_loop(hhs->mlx);
 }

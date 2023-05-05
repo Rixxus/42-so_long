@@ -3,15 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:23:38 by rmount            #+#    #+#             */
-/*   Updated: 2023/05/04 20:58:19 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/05 11:59:28 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+
+/*
+	This function checks the space the player wants to:
+	- is not a wall
+	- if it is a collectable, writes a message to the console
+	and decrements the collectable count, if the collectable
+	count reaches zero, prints an additional message.
+	- if it is the exit and the collectable count is 0, it sets
+	the end variable to 1 (true), prints a message and exits
+	the program
+	- if it is the exit but not all collectables are found,
+	prints a message then returns -1 to take_step
+	- if the keycode was not a valid direction, returns -1 to
+	take_step
+*/
 static int	valid_move(t_game *hhs, int y, int x, int keycode)
 {
 	if (hhs->map[y][x] == '1')
@@ -41,6 +56,16 @@ static int	valid_move(t_game *hhs, int y, int x, int keycode)
 		return (0);
 }
 
+/*
+	This function is called by keypress_hook and calls 
+	valid_move to test whether the step is permittable.
+	If it is a permitted move, it updates the coordinates the 
+	player has moved to to be a 0 (ground), resets the 
+	playery and playerx to the new coordinates and updates
+	the map to have a P on the coordinates.
+	Finally, it prints the current move count.
+*/
+
 static void	take_step(t_game *hhs, int y, int x, int keycode)
 {
 	int	check;
@@ -59,6 +84,19 @@ static void	take_step(t_game *hhs, int y, int x, int keycode)
 		ft_printf("Move count: %i\n", hhs->moves++);
 	}
 }
+
+/*
+	This function is called every time a key is pressed.
+	It modifies the coordinates based on the direction 
+	key pressed, and tests if end is set to 1 (true).
+	If it is 0, it calls take_step passing through
+	the updated coordinates and the keycode.
+	We also test here if the keycode is the escape key,
+	in which case we call exit_program. 
+	Once take_step and returns, we call draw_map to
+	update the appearance of the new positions 
+	on screen.
+*/
 
 int	keypress_hook(int keycode, t_game *hhs)
 {

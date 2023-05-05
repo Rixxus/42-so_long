@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmount <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:21:53 by rmount            #+#    #+#             */
-/*   Updated: 2023/05/04 20:45:28 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/05 13:07:27 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 	This function reads a supplied string (the argument supplied to the program)
-	and tests whether the last four characters are .ber.
+	is longer than 3 and tests whether the last four characters are .ber.
 */
 int	check_map_file(char *str)
 {
@@ -23,6 +23,10 @@ int	check_map_file(char *str)
 	i = 0;
 	while (str[i] != '\0')
 		i++;
+	if (i <= 3)
+	{
+		close_program("File name not long enough\n");
+	}
 	if (str[i - 1] != 'r' || str[i - 2] != 'e'
 		|| str[i - 3] != 'b' || str[i - 4] != '.')
 	{
