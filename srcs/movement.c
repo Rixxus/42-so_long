@@ -6,12 +6,11 @@
 /*   By: rmount <rmount@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:23:38 by rmount            #+#    #+#             */
-/*   Updated: 2023/05/05 11:59:28 by rmount           ###   ########.fr       */
+/*   Updated: 2023/05/05 13:37:50 by rmount           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 /*
 	This function checks the space the player wants to:
